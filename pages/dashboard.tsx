@@ -37,7 +37,6 @@ const Dashboard = () => {
   const [resources, setResources] = useState<SearchResults>({ items: [] });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const [newDisabled, setDisabled] = useState(false)
   const [isSummaryLoading, setSummaryLoading] = useState(false)
   const [isLinkLoading, setLinkLoading] = useState(false)
 
