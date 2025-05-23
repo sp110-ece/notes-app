@@ -6,7 +6,7 @@
 /* light mode */
 :root {
   --color-background: #ffffff;
-  --color-foreground: rgba(94, 44, 165, 1);          
+  --color-foreground: rgb(45, 20, 95);          
   --color-muted: #7a49b4;              
   --color-border: #c3b3e5;             
   --color-accent: #7a49b4;             
@@ -23,13 +23,13 @@
 @media (prefers-color-scheme: dark) {
   @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: #1a1d21;         
+    --color-background: #1a1a1a;         
     --color-foreground: #ffffff;         
     --color-muted: #a29cc1;               
     --color-border: #383f58;              
     --color-accent: #6c5dd3;              
-    --color-accent-light: #8e7bff;        
-    --color-sb-background: #3f3a66;       
+    --color-accent-light: #5F4DA5;        
+    --color-sb-background: #000000;       
     --color-sb-foreground: #ffffff;
     --color-intro-bg : #000000; 
     --gradient-alpha : rgba(255, 255, 255, 0.1);      
