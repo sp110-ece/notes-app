@@ -1,10 +1,10 @@
-import { Amplify } from "aws-amplify";
+// import { Amplify } from "aws-amplify";
 
 export const amplifyConfig = {
     Auth : {
         Cognito: {
-            userPoolId: "us-east-2_R4loMxWtH",
-            userPoolClientId: "1qeklab66fltmm0e1ipkjv5vpp"
+            userPoolId: process.env.NEXT_PUBLIC_COGNITO_USER_POOL_ID!,
+            userPoolClientId: process.env.NEXT_PUBLIC_COGNITO_CLIENT_ID!
         }
     }
 }

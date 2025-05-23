@@ -2,10 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import SignOut from '@/pages/doSignOut';
-import { fetchAuthSession, getCurrentUser, setUpTOTP } from 'aws-amplify/auth';
+import { fetchAuthSession, getCurrentUser } from 'aws-amplify/auth';
 import { useRouter } from 'next/navigation';
 import Sidebar from '@/componenets/sidebar';
-import { Sign } from 'crypto';
 import { getAccessToken } from '@/lib/auth';
 
 
@@ -51,7 +50,7 @@ const Dashboard = () => {
           router.push('/')
         }
       }
-      catch (err) {
+      catch {
         router.push('/');
       }
     }
@@ -65,7 +64,7 @@ const Dashboard = () => {
         const session = await fetchAuthSession();
         const token = session.tokens?.idToken?.toString();
         if (token) setIdToken(token);
-      } catch (err) {
+      } catch {
         //console.error('User not logged in or token fetch failed:', err);
         setError("Token fetch failed");
       }
@@ -112,14 +111,14 @@ const Dashboard = () => {
   }, [success]);
 
 
-  const handleSelectNote = async (note: Note) => {
-    setSelectedNote(note);
-    setTitle(note.title);
-    setContent(note.content);
-    setID(note.ID);
-    setResources({ items: [] })
-    setSummary('')
-  }
+  // const handleSelectNote = async (note: Note) => {
+  //   setSelectedNote(note);
+  //   setTitle(note.title);
+  //   setContent(note.content);
+  //   setID(note.ID);
+  //   setResources({ items: [] })
+  //   setSummary('')
+  // }
   async function getSummary(content: string) {
     const estimateToken = (text: string) => Math.ceil(text.trim().length / 5);
     const MAX_TOKENS = 1000;
@@ -163,12 +162,12 @@ const Dashboard = () => {
   }
 
   const handleNewNote = async () => {
-    setSelectedNote(null),
-    setTitle(''),
-    setContent(''),
+    setSelectedNote(null);
+    setTitle('');
+    setContent('');
     setID(crypto.randomUUID());
-    setSummary('')
-    setResources({ items: [] })
+    setSummary('');
+    setResources({ items: [] });
   };
   const handleSubmit = async () => {
     if (!idToken || !content || !desc) {
@@ -202,7 +201,10 @@ const Dashboard = () => {
         Authorization: `Bearer ${idToken}`,
       }
     });
-    
+
+    const updatedData = await updatedNotes.json();
+    setNotes(updatedData);
+
     setDisabled(true)
     const timer = setTimeout(() => {
       setDisabled(false);
@@ -212,8 +214,7 @@ const Dashboard = () => {
     
 
 
-    const updatedData = await updatedNotes.json();
-    setNotes(updatedData);
+    
   }
   else {
     const err = await res.json();
@@ -245,7 +246,7 @@ const Dashboard = () => {
         </div>
 
         <h1 className="text-5xl font-extrabold select-none">
-          What's on your mind...
+          What&apos;s on your mind...
         </h1>
         <div style={{ display: 'flex', gap: '1rem', width: '100%', flexGrow: 1, overflow: 'hidden', height: '75vh'}}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: "0", flexGrow: 1, overflowY: 'auto', height: '75vh'}}>

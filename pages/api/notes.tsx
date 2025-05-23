@@ -4,9 +4,9 @@ import { ddbDocClient } from '@/lib/dynamodb'
 import { jwtVerify } from 'jose';
 import * as jose from 'jose';
 
-const COGNITO_POOL_ID = process.env.COGNITO_USER_POOL_ID!;
-const COGNITO_CLIENT_ID = process.env.COGNITO_CLIENT_ID!;
-const REGION = process.env.AWS_REGION!;
+const COGNITO_POOL_ID = process.env.NEXT_PUBLIC_COGNITO_USER_POOL_ID!;
+const COGNITO_CLIENT_ID = process.env.NEXT_PUBLIC_COGNITO_CLIENT_ID!;
+const REGION = process.env.NEXT_PUBLIC_AWS_REGION!;
 
 const getCognitoIssuer = (region: string, poolId: string) => `https://cognito-idp.${region}.amazonaws.com/${poolId}`;
 
